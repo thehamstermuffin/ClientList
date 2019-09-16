@@ -6,4 +6,4 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
-SOURCES +=  tst_clienttests.cpp
+SOURCES +=  client-tests.cpp
