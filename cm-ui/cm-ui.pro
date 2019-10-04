@@ -1,7 +1,10 @@
 QT += quick qml
 CONFIG += c++14
 TEMPLATE = app
-INCLUDEPATH  += source
+INCLUDEPATH  += source \
+        ../cm-lib/source
+
+LIBS += -L$$PWD/../../build-cm-Desktop-Debug/cm-lib -lcm-lib
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
