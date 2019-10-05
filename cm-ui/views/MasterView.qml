@@ -8,7 +8,7 @@ Window {
     title: qsTr("Hello World")
 
     Text {
-        text: "Welcome to the Client Management system!"
+        text: masterController.ui_welcomeMessage
     }
 
 }
