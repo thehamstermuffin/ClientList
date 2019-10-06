@@ -2,20 +2,19 @@ QT += testlib
 QT -= gui
 
 TARGET = client-tests
-TEMPLATE = app
 
 CONFIG += qt console warn_on depend_includepath testcase
 CONFIG -= app_bundle
 CONFIG += c++14
 
-include(../qmake-target-platform.pri)
-include(../qmake-destination-path.pri)
+TEMPLATE = app
 
-INCLUDEPATH += source
-
-SOURCES += source/models/client-tests.cpp
+SOURCES +=  source/models/client-tests.cpp
 
 LIBS += -L$$PWD/../binaries/$$DESTINATION_PATH -lcm-lib
+
+include(../qmake-target-platform.pri)
+include(../qmake-destination-path.pri)
 
 DESTDIR = $$PWD/../binaries/$$DESTINATION_PATH
 OBJECTS_DIR = $$PWD/build/$$DESTINATION_PATH/.obj
