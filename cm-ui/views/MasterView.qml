@@ -21,6 +21,18 @@ Window {
         onGoFindClientView: contentFrame.replace("qrc:/views/FindClientView.qml")
     }
 
+    StackView {
+        id: contentFrame
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+            right: parent.right
+            left: navigationBar.right
+        }
+
+        initialItem: "qrc:/views/SplashView.qml"
+    }
+
     Rectangle {
         id: navigationBar
         anchors {
@@ -46,26 +58,13 @@ Window {
                 text: "Find Client"
                 onClicked: masterController.ui_navigationController.goFindClientView()
             }
+
+            Button {
+                text: "Create Client"
+                onClicked: contentFrame.replace("qrc:/views/CreateClientView.qml")
+            }
         }
-
     }
 
-
-    StackView {
-        id: contentFrame
-        anchors {
-            top: parent.top
-            bottom: parent.bottom
-            right: parent.right
-            left: navigationBar.right
-        }
-
-        initialItem: "qrc:/views/SplashView.qml"
-    }
-
-    Button {
-        onClicked:
-            contentFrame.replace("qrc:/views/CreateClientView.qml")
-    }
     Component.onCompleted: contentFrame.replace("qrc:/views/DashboardView.qml")
 }
