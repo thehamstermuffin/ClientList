@@ -43,3 +43,6 @@ target_wrapper.*
 CMakeLists.txt.user*
 
 binaries
+cm-lib/build
+cm-tests/build
+
