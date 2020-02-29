@@ -20,7 +20,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         source/main.cpp
 
-RESOURCES += views.qrc
+RESOURCES += views.qrc \
+    assets.qrc
 
 include(../qmake-target-platform.pri)
 include(../qmake-destination-path.pri)
