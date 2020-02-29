@@ -2,5 +2,6 @@
  <qresource prefix="/assets">
   <file alias="Style.qml">assets/Style.qml</file>
   <file alias="qmldir">assets/qmldir</file>
+  <file alias="fontAwesome.ttf">assets/fontawesome-webfont.ttf</file>
  </qresource>
 </RCC>
