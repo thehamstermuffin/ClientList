@@ -45,4 +45,5 @@ CMakeLists.txt.user*
 binaries
 cm-lib/build
 cm-tests/build
+cm-ui/build
 
