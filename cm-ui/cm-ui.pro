@@ -21,7 +21,8 @@ SOURCES += \
         source/main.cpp
 
 RESOURCES += views.qrc \
-    assets.qrc
+    assets.qrc \
+    components.qrc
 
 include(../qmake-target-platform.pri)
 include(../qmake-destination-path.pri)
