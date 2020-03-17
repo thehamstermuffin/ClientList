@@ -7,9 +7,11 @@ class MasterController::Implementation
 public:
     Implementation(MasterController* _masterController) : masterController(_masterController)
     {
+	commandController = new CommandController(masterController);
         navigationController = new NavigationController(masterController);
     }
     MasterController* masterController{nullptr};
+    CommandController* commandController{nullptr};
     NavigationController* navigationController{nullptr};
     QString welcomeMessage = "This is MasterController to Major Tom";
 };
@@ -26,6 +28,11 @@ MasterController::~MasterController()
 NavigationController* MasterController::navigationController()
 {
     return implementation->navigationController;
+}
+
+CommandController* MasterController::commandController()
+{
+    return implementation->commandController;
 }
 
 const QString& MasterController::welcomeMessage() const
