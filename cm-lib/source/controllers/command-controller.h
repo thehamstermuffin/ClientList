@@ -17,12 +17,11 @@ class CMLIBSHARED_EXPORT CommandController : public QObject
     ui_createClientViewContextCommands CONSTANT)
 
 public:
-    explicit CommandController(QObject *parent = nullptr);
+	explicit CommandController(QObject* _parent = nullptr);
 
     ~CommandController();
 
-    QQmlListProperty<framework::Command>
-    ui_createClientViewContextCommands();
+	QQmlListProperty<framework::Command> ui_createClientViewContextCommands();
 
 public slots:
     void onCreateClientSaveExecuted();

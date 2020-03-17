@@ -32,8 +32,7 @@ CommandController::CommandController(QObject* parent)
 CommandController::~CommandController()
 {
 }
-QQmlListProperty<Command>
-CommandController::ui_createClientViewContextCommands()
+QQmlListProperty<Command> CommandController::ui_createClientViewContextCommands()
 {
     return QQmlListProperty<Command>(this,
                                      implementation->createClientViewContextCommands);

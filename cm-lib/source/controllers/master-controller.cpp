@@ -7,11 +7,12 @@ class MasterController::Implementation
 public:
     Implementation(MasterController* _masterController) : masterController(_masterController)
     {
+	commandController = new CommandController(masterController);
         navigationController = new NavigationController(masterController);
     }
     MasterController* masterController{nullptr};
-    NavigationController* navigationController{nullptr};
     CommandController* commandController{nullptr};
+    NavigationController* navigationController{nullptr};
     QString welcomeMessage = "This is MasterController to Major Tom";
 };
 
