@@ -7,7 +7,7 @@ Item {
     property alias fontAwesome: fontAwesomeLoader.name
     FontLoader {
         id: fontAwesomeLoader
-        source: "qrc:/assets/fontawesome.ttf"
+        source: "qrc:/assets/fontAwesome.ttf"
     }
 
     readonly property color colourNavigationBarBackground: "#000000"
