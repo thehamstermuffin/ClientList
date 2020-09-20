@@ -35,7 +35,10 @@ SOURCES += source/models/client.cpp \
     source/data/enumerator-decorator.cpp \
     source/data/int-decorator.cpp \
     source/data/string-decorator.cpp \
-    source/framework/command.cpp
+    source/framework/command.cpp \
+    source/models/address.cpp \
+    source/models/appointment.cpp \
+    source/models/contact.cpp
 
 HEADERS += \
         source/controllers/command-controller.h \
@@ -49,8 +52,11 @@ HEADERS += \
         source/data/int-decorator.h \
         source/data/string-decorator.h \
         source/framework/command.h \
+        source/models/address.h \
+        source/models/appointment.h \
         source/models/client.h \
-        source/cm-lib_global.h
+        source/cm-lib_global.h \
+        source/models/contact.h
 
 unix {
     target.path = /usr/lib
