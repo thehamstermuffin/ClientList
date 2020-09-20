@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QJsonArray>
 #include <QJsonValue>
+#include <QJsonObject>
 
 #include <cm-lib_global.h>
 
@@ -44,7 +45,7 @@ public:
     virtual std::vector<Entity*> baseEntities() = 0;
 
     template <class T>
-    QList<T*>& derivedEntites();
+    QList<T*>& derivedEntities();
 
     template <class T>
     T* addEntity(T* entity);
@@ -88,7 +89,7 @@ public:
         return returnValue;
     }
 
-    QList<T*>& derivedEntites()
+    QList<T*>& derivedEntities()
     {
         return collection;
     }
@@ -107,9 +108,9 @@ private:
 };
 
 template <class T>
-QList<T*>& EntityCollectionBase::derivedEntites()
+QList<T*>& EntityCollectionBase::derivedEntities()
 {
-    return dynamic_cast<const EntityCollection<T>&>(*this).derivedEntites();
+    return dynamic_cast<const EntityCollection<T>&>(*this).derivedEntities();
 }
 
 template <class T>
