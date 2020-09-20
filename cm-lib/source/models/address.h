@@ -13,12 +13,13 @@ namespace models {
 
 class CMLIBSHARED_EXPORT Address : public data::Entity
 {
-    QObject
-    QPROPERTY(cm::data::StringDecorator* ui_building MEMBER building CONSTANT)
-    QPROPERTY(cm::data::StringDecorator* ui_street MEMBER street CONSTANT)
-    QPROPERTY(cm::data::StringDecorator* ui_city MEMBER city CONSTANT)
-    QPROPERTY(cm::data::StringDecorator* ui_postcode MEMBER postcode CONSTANT)
-    QPROPERTY(cm::data::StringDecorator* ui_fullAddress MEMBER fullAddress CONSTANT)
+    Q_OBJECT
+    Q_PROPERTY(cm::data::StringDecorator* ui_building MEMBER building CONSTANT)
+    Q_PROPERTY(cm::data::StringDecorator* ui_street MEMBER street CONSTANT)
+    Q_PROPERTY(cm::data::StringDecorator* ui_city MEMBER city CONSTANT)
+    Q_PROPERTY(cm::data::StringDecorator* ui_postcode MEMBER postcode CONSTANT)
+    Q_PROPERTY(QString ui_fullAddress READ fullAddress CONSTANT)
+
 public:
     explicit Address(QObject* parent = nullptr);
 
