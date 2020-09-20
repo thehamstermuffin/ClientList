@@ -43,6 +43,7 @@ HEADERS += \
         source/controllers/navigation-controller.h \
         source/data/data-decorator.h \
         source/data/datetime-decorator.h \
+        source/data/entity-collection.h \
         source/data/entity.h \
         source/data/enumerator-decorator.h \
         source/data/int-decorator.h \
