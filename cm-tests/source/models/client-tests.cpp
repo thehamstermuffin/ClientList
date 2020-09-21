@@ -48,6 +48,4 @@ void ClientTests::test_case2()
     QVERIFY(false);
 }
 
-QTEST_APPLESS_MAIN(ClientTests)
-
 #include "client-tests.moc"

@@ -10,6 +10,7 @@ CONFIG += c++14
 TEMPLATE = app
 
 SOURCES +=  source/models/client-tests.cpp \
+    source/main.cpp \
     source/test-suite.cpp
 
 #LIBS += -L$$PWD/../binaries/$$DESTINATION_PATH -lcm-lib

@@ -15,7 +15,7 @@ TestSuite::TestSuite(const QString& _testName)
 
 TestSuite::~TestSuite()
 {
-    qDebug() << "Destoying test";
+    qDebug() << "Destroying test";
 }
 
 std::vector<TestSuite*>& testList()
