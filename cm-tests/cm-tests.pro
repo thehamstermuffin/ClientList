@@ -9,7 +9,8 @@ CONFIG += c++14
 
 TEMPLATE = app
 
-SOURCES +=  source/models/client-tests.cpp
+SOURCES +=  source/models/client-tests.cpp \
+    source/test-suite.cpp
 
 #LIBS += -L$$PWD/../binaries/$$DESTINATION_PATH -lcm-lib
 
@@ -21,3 +22,6 @@ OBJECTS_DIR = $$PWD/build/$$DESTINATION_PATH/.obj
 MOC_DIR = $$PWD/build/$$DESTINATION_PATH/.moc
 RCC_DIR = $$PWD/build/$$DESTINATION_PATH/.qrc
 UI_DIR = $$PWD/build/$$DESTINATION_PATH/.ui
+
+HEADERS += \
+    source/test-suite.h

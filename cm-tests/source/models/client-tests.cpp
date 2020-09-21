@@ -14,6 +14,7 @@ private slots:
     void initTestCase();
     void cleanupTestCase();
     void test_case1();
+    void test_case2();
 
 };
 
@@ -40,6 +41,11 @@ void ClientTests::cleanupTestCase()
 void ClientTests::test_case1()
 {
 
+}
+
+void ClientTests::test_case2()
+{
+    QVERIFY(false);
 }
 
 QTEST_APPLESS_MAIN(ClientTests)
