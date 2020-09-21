@@ -13,7 +13,6 @@
 namespace cm {
 namespace data {
 
-
 class CMLIBSHARED_EXPORT StringDecorator : public DataDecorator
 {
     Q_OBJECT

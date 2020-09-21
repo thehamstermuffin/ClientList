@@ -32,7 +32,6 @@ private:
 
 };
 
-}
-}
+}}
 
 #endif // COMMANDCONTROLLER_H

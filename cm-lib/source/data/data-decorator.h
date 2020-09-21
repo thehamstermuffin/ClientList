@@ -17,6 +17,7 @@ class CMLIBSHARED_EXPORT DataDecorator : public QObject
 {
     Q_OBJECT
     Q_PROPERTY( QString ui_label READ label CONSTANT )
+
 public:
     DataDecorator( Entity* parent = nullptr, const QString& key = "SomeItemKey",
                    const QString& label = "");

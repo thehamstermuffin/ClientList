@@ -34,13 +34,11 @@ CommandController::~CommandController()
 }
 QQmlListProperty<Command> CommandController::ui_createClientViewContextCommands()
 {
-    return QQmlListProperty<Command>(this,
-                                     implementation->createClientViewContextCommands);
+    return QQmlListProperty<Command>(this, implementation->createClientViewContextCommands);
 }
 void CommandController::onCreateClientSaveExecuted()
 {
     qDebug() << "You executed the Save command!";
 }
 
-}
-}
+}}

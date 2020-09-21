@@ -1,62 +1,58 @@
-#include "int-decorator.h"
+#include "string-decorator.h"
 
 #include <QVariant>
 
 namespace cm {
 namespace data {
 
-class IntDecorator::Implementation
+class StringDecorator::Implementation
 {
 public:
-    Implementation(IntDecorator* intDecorator, int value)
-        : intDecorator(intDecorator)
-        , value(value)
-    {
-    }
+	Implementation(StringDecorator* _stringDecorator, const QString& _value)
+		: stringDecorator(_stringDecorator)
+		, value(_value)
+	{
+	}
 
-    IntDecorator* intDecorator{nullptr};
-    int value;
+	StringDecorator* stringDecorator{nullptr};
+	QString value;
 };
 
-IntDecorator::IntDecorator(Entity* parentEntity, const QString& key, const QString& label, int value)
-    : DataDecorator(parentEntity, key, label)
+StringDecorator::StringDecorator(Entity* parentEntity, const QString& key, const QString& label, const QString& value)
+	: DataDecorator(parentEntity, key, label)
 {
-    implementation.reset(new Implementation(this, value));
+	implementation.reset(new Implementation(this, value));
 }
 
-IntDecorator::~IntDecorator()
+StringDecorator::~StringDecorator()
 {
 }
 
-int IntDecorator::value() const
+const QString& StringDecorator::value() const
 {
-    return implementation->value;
+	return implementation->value;
 }
 
-IntDecorator& IntDecorator::setValue(int value)
+StringDecorator& StringDecorator::setValue(const QString& value)
 {
-    if(value != implementation->value) {
-        // ...Validation here if required...
-        implementation->value = value;
-        emit valueChanged();
-    }
-
-    return *this;
+	if(value != implementation->value) {
+		// ...Validation here if required...
+		implementation->value = value;
+		emit valueChanged();
+	}
+	return *this;
 }
 
-QJsonValue IntDecorator::jsonValue() const
+QJsonValue StringDecorator::jsonValue() const
 {
-    return QJsonValue::fromVariant(QVariant(implementation->value));
+	return QJsonValue::fromVariant(QVariant(implementation->value));
 }
 
-void IntDecorator::update(const QJsonObject& jsonObject)
+void StringDecorator::update(const QJsonObject& _jsonObject)
 {
-    if (jsonObject.contains(key())) {
-        auto l_value = jsonObject.value(key()).toInt();
-        setValue(l_value);
-    } else {
-        setValue(0);
-    }
+	if (_jsonObject.contains(key())) {
+		setValue(_jsonObject.value(key()).toString());
+	}
 }
 
 }}

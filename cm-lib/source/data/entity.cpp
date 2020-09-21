@@ -65,17 +65,15 @@ DataDecorator* Entity::addDataItem(DataDecorator* dataDecorator)
 
 void Entity::update(const QJsonObject &jsonObject)
 {
-    //update data decorators
-    for (std::pair<QString, DataDecorator*> dataDecoratorPair :
-         implementation->dataDecorators) {
-        dataDecoratorPair.second->update(jsonObject);
-    }
+	// Update data decorators
+	for (std::pair<QString, DataDecorator*> dataDecoratorPair : implementation->dataDecorators) {
+		dataDecoratorPair.second->update(jsonObject);
+	}
 
-    //update child entities
-    for (std::pair<QString, Entity*> childEntityPair :
-         implementation->childEntities) {
-        childEntityPair.second->update(jsonObject.value(childEntityPair.first).toObject());
-    }
+	// Update child entities
+	for (std::pair<QString, Entity*> childEntityPair : implementation->childEntities) {
+		childEntityPair.second->update(jsonObject.value(childEntityPair.first).toObject());
+	}
 
     // Update child collections
     for (std::pair<QString, EntityCollectionBase*> childCollectionPair : implementation->childCollections) {

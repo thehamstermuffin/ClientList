@@ -38,6 +38,6 @@ private:
     QScopedPointer<Implementation> implementation;
 };
 
-}
-}
-#endif // COMMAND_H
+}}
+
+#endif
