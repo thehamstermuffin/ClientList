@@ -3,9 +3,12 @@ QT -= gui
 
 TARGET = client-tests
 
-CONFIG += qt console warn_on depend_includepath testcase
-CONFIG -= app_bundle
 CONFIG += c++14
+CONFIG += console
+CONFIG -= app_bundle
+
+INCLUDEPATH += source \
+    ../cm-lib/source
 
 TEMPLATE = app
 
@@ -13,7 +16,7 @@ SOURCES +=  source/models/client-tests.cpp \
     source/main.cpp \
     source/test-suite.cpp
 
-#LIBS += -L$$PWD/../binaries/$$DESTINATION_PATH -lcm-lib
+LIBS += -L$$PWD/../binaries/$$DESTINATION_PATH #-lcm-lib # is lcm-lib needed?
 
 include(../qmake-target-platform.pri)
 include(../qmake-destination-path.pri)

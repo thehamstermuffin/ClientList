@@ -3,7 +3,7 @@
 
 #include "test-suite.h"
 
-using namespace  cm;
+using namespace cm;
 
 int main(int argc, char *argv[])
 {
@@ -11,23 +11,22 @@ int main(int argc, char *argv[])
     Q_UNUSED(argv)
 
     qDebug() << "Starting test suite...";
-    qDebug() << "ACCessing tests from " << &TestSuite::testList();
-    qDebug() << TestSuite::testList().size() << "tests detected";
+    qDebug() << "Accessing tests from " << &TestSuite::testList();
+    qDebug() << TestSuite::testList().size() << " tests detected";
 
     int failedTestsCount = 0;
 
-    for (TestSuite* i : TestSuite::testList()) {
+    for(TestSuite* i : TestSuite::testList()) {
         qDebug() << "Executing test " << i->testName;
         QString filename(i->testName + ".xml");
-        int result = QTest::qExec(i, QStringList() << " " << " o" << filename << "-xunitxml");
+        int result = QTest::qExec(i, QStringList() << " " << "-o" << filename << "-xunitxml");
         qDebug() << "Test result " << result;
-
-        if (result != 0) {
+        if(result != 0) {
             failedTestsCount++;
         }
-
-        qDebug() << "Test suite complete - " << QString::number(failedTestsCount) << " failures detected.";
-
-        return failedTestsCount;
     }
+
+    qDebug() << "Test suite complete - " << QString::number(failedTestsCount) << " failures detected.";
+
+    return failedTestsCount;
 }
