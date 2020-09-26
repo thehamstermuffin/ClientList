@@ -2,24 +2,24 @@ QT += testlib
 QT -= gui
 
 TARGET = client-tests
+TEMPLATE = app
 
 CONFIG += c++14
 CONFIG += console
 CONFIG -= app_bundle
 
+include(../qmake-target-platform.pri)
+include(../qmake-destination-path.pri)
+
 INCLUDEPATH += source \
     ../cm-lib/source
 
-TEMPLATE = app
-
 SOURCES +=  source/models/client-tests.cpp \
+    source/test-suite.cpp \
     source/main.cpp \
-    source/test-suite.cpp
+    source/controllers/master-controller-tests.cpp
 
-LIBS += -L$$PWD/../binaries/$$DESTINATION_PATH #-lcm-lib # is lcm-lib needed?
-
-include(../qmake-target-platform.pri)
-include(../qmake-destination-path.pri)
+LIBS += -L$$PWD/../binaries/$$DESTINATION_PATH -lcm-lib
 
 DESTDIR = $$PWD/../binaries/$$DESTINATION_PATH
 OBJECTS_DIR = $$PWD/build/$$DESTINATION_PATH/.obj
@@ -28,4 +28,5 @@ RCC_DIR = $$PWD/build/$$DESTINATION_PATH/.qrc
 UI_DIR = $$PWD/build/$$DESTINATION_PATH/.ui
 
 HEADERS += \
-    source/test-suite.h
+    source/test-suite.h \
+    source/controllers/master-controller-tests.h
