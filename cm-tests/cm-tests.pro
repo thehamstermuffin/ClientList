@@ -15,6 +15,10 @@ INCLUDEPATH += source \
     ../cm-lib/source
 
 SOURCES +=  source/models/client-tests.cpp \
+    source/data/datetime-decorator-tests.cpp \
+    source/data/enumerator-decorator-tests.cpp \
+    source/data/int-decorator-tests.cpp \
+    source/data/string-decorator-tests.cpp \
     source/test-suite.cpp \
     source/main.cpp \
     source/controllers/master-controller-tests.cpp
@@ -28,5 +32,9 @@ RCC_DIR = $$PWD/build/$$DESTINATION_PATH/.qrc
 UI_DIR = $$PWD/build/$$DESTINATION_PATH/.ui
 
 HEADERS += \
+    source/data/datetime-decorator-tests.h \
+    source/data/enumerator-decorator-tests.h \
+    source/data/int-decorator-tests.h \
+    source/data/string-decorator-tests.h \
     source/test-suite.h \
     source/controllers/master-controller-tests.h
