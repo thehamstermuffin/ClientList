@@ -52,7 +52,9 @@ void StringDecorator::update(const QJsonObject& _jsonObject)
 {
 	if (_jsonObject.contains(key())) {
 		setValue(_jsonObject.value(key()).toString());
-	}
+    } else {
+        setValue("");
+    }
 }
 
 }}
