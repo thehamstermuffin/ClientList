@@ -102,4 +102,61 @@ void DateTimeDecoratorTests::update_whenNotPresentInJson_updatesValueToDefault()
     QCOMPARE(valueChangedSpy.count(), 1);
 }
 
+void DateTimeDecoratorTests::toIso8601String_whenDefaultValue_returnsString() {
+    DateTimeDecorator decorator;
+
+    QCOMPARE(decorator.toIso8601String(), QString(""));
+}
+
+void DateTimeDecoratorTests::toIso8601String_whenValueSet_returnsString(){
+    DateTimeDecorator decorator;
+    decorator.setValue(testDate);
+    QCOMPARE(decorator.toIso8601String(), QString("2020-09-26T16:40:32"));
+}
+
+void DateTimeDecoratorTests::toPrettyDateString_whenDefaultValue_returnsString()
+{
+    DateTimeDecorator decorator;
+
+    QCOMPARE(decorator.toPrettyDateString(), QString("Not set"));
+}
+
+void DateTimeDecoratorTests::toPrettyDateString_whenValueSet_returnsString()
+{
+    DateTimeDecorator decorator;
+    decorator.setValue(testDate);
+
+    QCOMPARE(decorator.toPrettyDateString(), QString("26 sep. 2020"));
+}
+
+void DateTimeDecoratorTests::toPrettyTimeString_whenDefaultValue_returnsString()
+{
+    DateTimeDecorator decorator;
+
+    QCOMPARE(decorator.toPrettyTimeString(), QString("Not set"));
+}
+
+void DateTimeDecoratorTests::toPrettyTimeString_whenValueSet_returnsString()
+{
+    DateTimeDecorator decorator;
+    decorator.setValue(testDate);
+
+    QCOMPARE(decorator.toPrettyTimeString(), QString("04:40 p.\u00A0m."));
+}
+
+void DateTimeDecoratorTests::toPrettyString_whenDefaultValue_returnsString()
+{
+    DateTimeDecorator decorator;
+
+    QCOMPARE(decorator.toPrettyString(), QString("Not set"));
+}
+
+void DateTimeDecoratorTests::toPrettyString_whenValueSet_returnsString()
+{
+    DateTimeDecorator decorator;
+    decorator.setValue(testDate);
+
+    QCOMPARE(decorator.toPrettyString(), QString("s\u00E1b. 26 sep. 2020 @ 16:40:32"));
+}
+
 }}

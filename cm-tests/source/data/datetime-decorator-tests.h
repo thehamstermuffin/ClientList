@@ -25,6 +25,14 @@ private slots:
     void update_whenPresentInJson_updatesValue();
     void update_whenNotPresentInJson_updatesValueToDefault();
 
+    void toIso8601String_whenDefaultValue_returnsString();
+    void toIso8601String_whenValueSet_returnsString();
+    void toPrettyDateString_whenDefaultValue_returnsString();
+    void toPrettyDateString_whenValueSet_returnsString();
+    void toPrettyTimeString_whenDefaultValue_returnsString();
+    void toPrettyTimeString_whenValueSet_returnsString();
+    void toPrettyString_whenDefaultValue_returnsString();
+    void toPrettyString_whenValueSet_returnsString();
 
 private:
     QDateTime testDate{QDate(2020, 9, 26), QTime(16, 40, 32)};
