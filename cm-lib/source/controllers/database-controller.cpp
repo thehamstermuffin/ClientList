@@ -159,6 +159,34 @@ bool DatabaseController::updateRow(const QString &tableName, const QString &id, 
     return query.numRowsAffected() > 0;
 }
 
+QJsonArray DatabaseController::find(const QString &tableName, const QString &searchText) const
+{
+    if (tableName.isEmpty()) return {};
+    if (searchText.isEmpty()) return {};
+
+    QSqlQuery query(implementation->database);
+
+    QString sqlStatement = "SELECT json FROM " + tableName + " where lower(json) like :searchText";
+
+    if (!query.prepare(sqlStatement)) return {};
+
+    query.bindValue(":searchText", QVariant("%" + searchText.toLower() + "%"));
+
+    if (!query.exec()) return {};
+
+    QJsonArray returnValue;
+
+    while (query.next()) {
+        auto json = query.value(0).toByteArray();
+        auto jsonDocument = QJsonDocument::fromJson(json);
+        if (jsonDocument.isObject()) {
+            returnValue.append(jsonDocument.object());
+        }
+    }
+
+    return returnValue;
+}
+
 }
 
 }
