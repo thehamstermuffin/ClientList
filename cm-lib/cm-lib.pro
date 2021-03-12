@@ -13,6 +13,7 @@ QT += sql
 
 SOURCES += source/models/client.cpp \
     source/controllers/command-controller.cpp \
+    source/controllers/database-controller.cpp \
     source/controllers/master-controller.cpp \
     source/data/data-decorator.cpp \
     source/data/datetime-decorator.cpp \
@@ -27,6 +28,7 @@ SOURCES += source/models/client.cpp \
 
 HEADERS += \
         source/controllers/command-controller.h \
+        source/controllers/database-controller.h \
         source/controllers/i-database-controller.h \
         source/controllers/master-controller.h \
         source/controllers/navigation-controller.h \
