@@ -27,6 +27,7 @@ SOURCES += source/models/client.cpp \
 
 HEADERS += \
         source/controllers/command-controller.h \
+        source/controllers/i-database-controller.h \
         source/controllers/master-controller.h \
         source/controllers/navigation-controller.h \
         source/data/data-decorator.h \
