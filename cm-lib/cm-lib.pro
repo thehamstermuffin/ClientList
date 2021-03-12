@@ -9,6 +9,8 @@ DEFINES += CMLIB_LIBRARY
 
 INCLUDEPATH += source
 
+QT += sql
+
 SOURCES += source/models/client.cpp \
     source/controllers/command-controller.cpp \
     source/controllers/master-controller.cpp \
