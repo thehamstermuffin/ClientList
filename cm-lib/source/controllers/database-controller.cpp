@@ -159,6 +159,7 @@ bool DatabaseController::updateRow(const QString &tableName, const QString &id, 
     return query.numRowsAffected() > 0;
 }
 
+//converts to lowercase and searches for the string
 QJsonArray DatabaseController::find(const QString &tableName, const QString &searchText) const
 {
     if (tableName.isEmpty()) return {};
