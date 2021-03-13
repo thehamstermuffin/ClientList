@@ -18,7 +18,7 @@ public:
             qDebug() << "Database created using Sqlite version: " + sqliteVersion();
 
             if (createTables()) {
-                qDebug << "Database tables created";
+                qDebug() << "Database tables created";
             } else {
                 qDebug() << "ERROR: Unable to create database tables";
             }
