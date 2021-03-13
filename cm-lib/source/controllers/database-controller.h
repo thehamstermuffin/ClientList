@@ -4,11 +4,11 @@
 #include <QObject>
 #include <QScopedPointer>
 
+#include <controllers/i-database-controller.h>
 #include <cm-lib_global.h>
 
 namespace cm {
 namespace controllers {
-
 
 class CMLIBSHARED_EXPORT DatabaseController : public IDatabaseController
 {

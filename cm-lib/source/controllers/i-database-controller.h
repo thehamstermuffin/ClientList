@@ -12,13 +12,13 @@
 namespace cm {
 namespace controllers {
 
-class CMLIBSHARED_EXPORT IDataBaseController : public QObject
+class CMLIBSHARED_EXPORT IDatabaseController : public QObject
 {
     Q_OBJECT
 
 public:
-    IDataBaseController(QObject* parent) : QObject(parent) {}
-    virtual ~IDataBaseController(){}
+    IDatabaseController(QObject* parent) : QObject(parent) {}
+    virtual ~IDatabaseController(){}
 
     virtual bool createRow(const QString& tableName, const QString& id,
                            const QJsonObject& jsonObject) const = 0;

@@ -8,11 +8,11 @@
 
 #include <cm-lib_global.h>
 #include <data/data-decorator.h>
+#include <data/string-decorator.h>
 #include <data/entity-collection.h>
 
 namespace cm {
 namespace data {
-
 
 class CMLIBSHARED_EXPORT Entity : public QObject
 {
@@ -24,7 +24,9 @@ public:
 
 public:
     const QString& key() const;
+    const QString& id() const;
     void update(const QJsonObject& jsonObject);
+    void setPrimaryKey(StringDecorator* primaryKey);
     QJsonObject toJson() const;
 
 signals:

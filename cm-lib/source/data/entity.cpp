@@ -1,23 +1,26 @@
 #include <QJsonArray>
+#include <QUuid>
 
 #include "entity.h"
-#include <data/entity-collection.h>
 
 namespace cm {
 namespace data {
-
 
 class Entity::Implementation
 {
 public:
 
-    Implementation(Entity* _entity, const QString& _key)
+    Implementation(Entity* _entity, IDatabaseController* _databaseController,
+                   const QString& _key)
         : entity(_entity)
         , key(_key)
+        , id(QUuid::createUuid().toString())
     {
     }
     Entity* entity{nullptr};
+    StringDecorator* primaryKey{nullptr};
     QString key;
+    QString id;
     std::map<QString, EntityCollectionBase*> childCollections;
     std::map<QString, Entity*> childEntities;
     std::map<QString, DataDecorator*> dataDecorators;
@@ -44,6 +47,15 @@ const QString& Entity::key() const
     return implementation->key;
 }
 
+const QString& Entity::id() const
+{
+    if (implementation->primaryKey != nullptr &&
+            !implementation->primaryKey->value().isEmpty()) {
+        return implementation->primaryKey->value();
+    }
+    return implementation->id;
+}
+
 Entity* Entity::addChild(Entity* entity, const QString& key)
 {
     if (implementation->childEntities.find(key) == std::end(implementation->childEntities)) {
@@ -63,8 +75,16 @@ DataDecorator* Entity::addDataItem(DataDecorator* dataDecorator)
     return dataDecorator;
 }
 
+void Entity::setPrimaryKey(StringDecorator* primaryKey)
+{
+    implementation->primaryKey = primaryKey;
+}
+
 void Entity::update(const QJsonObject &jsonObject)
 {
+    if (jsonObject.contains("id")) {
+        implementation->id = jsonObject.value("id").toString();
+    }
 	// Update data decorators
 	for (std::pair<QString, DataDecorator*> dataDecoratorPair : implementation->dataDecorators) {
 		dataDecoratorPair.second->update(jsonObject);
@@ -84,6 +104,7 @@ void Entity::update(const QJsonObject &jsonObject)
 QJsonObject Entity::toJson() const
 {
     QJsonObject returnValue;
+    returnValue.insert("id", implementation->id);
     //Add data decorators
     for (std::pair<QString, DataDecorator*> dataDecoratorPair : implementation->dataDecorators) {
         returnValue.insert(dataDecoratorPair.first, dataDecoratorPair.second->jsonValue());
