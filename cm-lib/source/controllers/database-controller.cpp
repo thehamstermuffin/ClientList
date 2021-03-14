@@ -74,12 +74,23 @@ private:
 }
 
 namespace controllers {
+
+DatabaseController::DatabaseController(QObject* parent)
+    : IDatabaseController(parent)
+{
+    implementation.reset(new Implementation(this));
+}
+
+DatabaseController::~DatabaseController()
+{
+}
+
 //banana estos ampersands se autocompletaron asi pero talvez vayan pegados al tipo y no al nombre
 bool DatabaseController::createRow(const QString &tableName, const QString &id, const QJsonObject &jsonObject) const
 {
     if (tableName.isEmpty()) return false;
     if (id.isEmpty()) return false;
-    if (jsonObject.isEmpty()) return false; //banana no se porque manda error aqui
+    if (jsonObject.isEmpty()) return false;
 
     QSqlQuery query(implementation->database);
     QString sqlStatement = "INSERT OR REPLACE INTO " + tableName +
@@ -188,6 +199,4 @@ QJsonArray DatabaseController::find(const QString &tableName, const QString &sea
     return returnValue;
 }
 
-}
-
-}
+}}
