@@ -10,6 +10,7 @@
 #include <data/data-decorator.h>
 #include <data/string-decorator.h>
 #include <data/entity-collection.h>
+#include <controllers/i-database-controller.h>
 
 namespace cm {
 namespace data {
