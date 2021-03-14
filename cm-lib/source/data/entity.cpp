@@ -10,7 +10,7 @@ class Entity::Implementation
 {
 public:
 
-    Implementation(Entity* _entity, IDatabaseController* _databaseController,
+    Implementation(Entity* _entity, //IDatabaseController* _databaseController, //banana se qu3edara esto?
                    const QString& _key)
         : entity(_entity)
         , key(_key)
