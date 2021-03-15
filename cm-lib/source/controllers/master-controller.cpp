@@ -10,10 +10,12 @@ class MasterController::Implementation
 public:
     Implementation(MasterController* _masterController) : masterController(_masterController)
     {
-        commandController = new CommandController(masterController);
+        databaseController = new DatabaseController(masterController);
         navigationController = new NavigationController(masterController);
         newClient = new Client(masterController);
+        commandController = new CommandController(masterController, databaseController, newClient);
     }
+    DatabaseController* databaseController{nullptr};
     MasterController* masterController{nullptr};
     CommandController* commandController{nullptr};
     NavigationController* navigationController{nullptr};
@@ -38,6 +40,11 @@ NavigationController* MasterController::navigationController()
 CommandController* MasterController::commandController()
 {
     return implementation->commandController;
+}
+
+DatabaseController *MasterController::databaseController()
+{
+    return implementation->databaseController;
 }
 
 const QString& MasterController::welcomeMessage() const

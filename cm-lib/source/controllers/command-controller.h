@@ -5,6 +5,8 @@
 #include <QtQml/QQmlListProperty>
 #include <cm-lib_global.h>
 #include <framework/command.h>
+#include <controllers/i-database-controller.h>
+#include <models/client.h>
 
 namespace cm {
 namespace controllers {
@@ -17,7 +19,9 @@ class CMLIBSHARED_EXPORT CommandController : public QObject
     ui_createClientViewContextCommands CONSTANT)
 
 public:
-	explicit CommandController(QObject* _parent = nullptr);
+    explicit CommandController(QObject* _parent = nullptr,
+                               IDatabaseController* databaseController = nullptr,
+                               models::Client* newClient = nullptr);
 
     ~CommandController();
 
