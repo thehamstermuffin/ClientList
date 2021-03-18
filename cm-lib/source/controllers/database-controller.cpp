@@ -36,7 +36,7 @@ private:
     bool initialise()
     {
         database = QSqlDatabase::addDatabase("QSQLITE", "cm");
-        database.setDatabaseName( "cm.qslite" );
+        database.setDatabaseName( "cm.sqlite" );
         return database.open();
     }
 
