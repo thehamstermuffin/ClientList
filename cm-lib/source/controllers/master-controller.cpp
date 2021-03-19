@@ -13,13 +13,15 @@ public:
         databaseController = new DatabaseController(masterController);
         navigationController = new NavigationController(masterController);
         newClient = new Client(masterController);
-        commandController = new CommandController(masterController, databaseController, newClient);
+        clientSearch = new ClientSearch(masterController, databaseController);
+        commandController = new CommandController(masterController, databaseController, newClient, clientSearch);
     }
     DatabaseController* databaseController{nullptr};
     MasterController* masterController{nullptr};
     CommandController* commandController{nullptr};
     NavigationController* navigationController{nullptr};
     Client* newClient{nullptr};
+    ClientSearch* clientSearch{nullptr};
     QString welcomeMessage = "Welcome to the Client Management system!";
 };
 
@@ -55,6 +57,11 @@ const QString& MasterController::welcomeMessage() const
 Client* MasterController::newClient()
 {
     return implementation->newClient;
+}
+
+ClientSearch *MasterController::clientSearch()
+{
+    return implementation->clientSearch;
 }
 
 }}

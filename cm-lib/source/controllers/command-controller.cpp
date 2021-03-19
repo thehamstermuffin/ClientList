@@ -14,10 +14,14 @@ class CommandController::Implementation
 public:
     Implementation(CommandController* _commandController,
                    IDatabaseController* _databaseController,
-                   Client* _newClient)
+                   //NavigationController* _navigationController,
+                   Client* _newClient,
+                   ClientSearch* _clientSearch)
         : commandController(_commandController)
         , databaseController(_databaseController)
+//        , navigationController(_navigationController)
         , newClient(_newClient)
+        , clientSearch(_clientSearch)
     {
         IDatabaseController* databaseController{nullptr};
         Client* newClient{nullptr};
@@ -32,16 +36,17 @@ public:
 
     IDatabaseController* databaseController{nullptr};
     Client* newClient{nullptr};
-
+    ClientSearch* clientSearch{nullptr};
     QList<Command*> createClientViewContextCommands{};
 };
 
 CommandController::CommandController(QObject* parent,
                                      IDatabaseController* databaseController,
-                                     Client* newClient)
+                                     Client* newClient,
+                                     ClientSearch* clientSearch)
     : QObject(parent)
 {
-    implementation.reset(new Implementation(this, databaseController, newClient));
+    implementation.reset(new Implementation(this, databaseController, newClient, clientSearch));
 }
 
 CommandController::~CommandController()

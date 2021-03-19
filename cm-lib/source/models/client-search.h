@@ -17,7 +17,7 @@ class CMLIBSHARED_EXPORT ClientSearch : public data::Entity
 {
     Q_OBJECT
     Q_PROPERTY(cm::data::StringDecorator* ui_searchText READ searchText CONSTANT)
-    Q_PROPERTY(QQmlListProperty<cm::models::Client> ui_searchResults READ ui_seachResults
+    Q_PROPERTY(QQmlListProperty<cm::models::Client> ui_searchResults READ ui_searchResults
                NOTIFY searchResultsChanged)
 public:
     ClientSearch(QObject* parent = nullptr,

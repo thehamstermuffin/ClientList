@@ -26,6 +26,7 @@ class CMLIBSHARED_EXPORT MasterController : public QObject
     Q_PROPERTY( cm::controllers::DatabaseController* ui_databaseController
                 READ databaseController CONSTANT )
     Q_PROPERTY( cm::models::Client* ui_newClient READ newClient CONSTANT)
+    Q_PROPERTY( cm::models::ClientSearch* ui_clientSearch READ clientSearch CONSTANT)
 public:
     explicit MasterController(QObject *parent = nullptr);
     ~MasterController();
@@ -33,10 +34,12 @@ public:
     CommandController* commandController();
     DatabaseController* databaseController();
     models::Client* newClient();
+    models::ClientSearch* clientSearch();
     const QString& welcomeMessage() const;
 
 private:
     class Implementation;
+//    models::ClientSearch* clientSearch();
     QScopedPointer<Implementation> implementation;
 };
 
