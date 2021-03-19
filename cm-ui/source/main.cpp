@@ -9,6 +9,7 @@
 #include <models/appointment.h>
 #include <models/client.h>
 #include <models/contact.h>
+#include <models/client-search.h>
 
 #include <data/datetime-decorator.h>
 #include <data/enumerator-decorator.h>
