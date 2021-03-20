@@ -39,7 +39,6 @@ public:
 
 private:
     class Implementation;
-//    models::ClientSearch* clientSearch();
     QScopedPointer<Implementation> implementation;
 };
 

@@ -25,4 +25,8 @@ Item {
             }
         }
     }
+
+    CommandBar {
+        commandList: masterController.ui_commandController.ui_findClientViewContextCommands
+    }
 }

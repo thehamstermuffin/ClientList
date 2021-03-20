@@ -19,20 +19,24 @@ class CMLIBSHARED_EXPORT CommandController : public QObject
     Q_PROPERTY(QQmlListProperty<cm::framework::Command>
                ui_createClientViewContextCommands READ
                ui_createClientViewContextCommands CONSTANT)
+    Q_PROPERTY(QQmlListProperty<cm::framework::Command>
+               ui_findClientViewContextCommands READ
+               ui_findClientViewContextCommands CONSTANT)
 
 public:
     explicit CommandController(QObject* _parent = nullptr,
                                IDatabaseController* databaseController = nullptr,
-//                               controllers::NavigationController* navigationController = nullptr,
                                models::Client* newClient = nullptr,
                                models::ClientSearch* clientSearch = nullptr);
 
     ~CommandController();
 
     QQmlListProperty<framework::Command> ui_createClientViewContextCommands();
+    QQmlListProperty<framework::Command> ui_findClientViewContextCommands();
 
 public slots:
     void onCreateClientSaveExecuted();
+    void onFindClientSearchExecuted();
 
 private:
     class Implementation;
