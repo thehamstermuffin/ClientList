@@ -14,7 +14,7 @@ public:
         navigationController = new NavigationController(masterController);
         newClient = new Client(masterController);
         clientSearch = new ClientSearch(masterController, databaseController);
-        commandController = new CommandController(masterController, databaseController, newClient, clientSearch);
+        commandController = new CommandController(masterController, databaseController, navigationController, newClient, clientSearch);
     }
     DatabaseController* databaseController{nullptr};
     MasterController* masterController{nullptr};

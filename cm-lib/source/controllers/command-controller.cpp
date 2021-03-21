@@ -14,14 +14,17 @@ class CommandController::Implementation
 public:
     Implementation(CommandController* _commandController,
                    IDatabaseController* _databaseController,
+                   NavigationController* _navigationController,
                    Client* _newClient,
                    ClientSearch* _clientSearch)
         : commandController(_commandController)
+        , navigationController(_navigationController)
         , databaseController(_databaseController)
         , newClient(_newClient)
         , clientSearch(_clientSearch)
     {
         IDatabaseController* databaseController{nullptr};
+        NavigationController* navigationController{nullptr};
         Client* newClient{nullptr};
         Command* createClientSaveCommand = new Command( commandController, QChar( 0xf0c7 ), "Save" );
         QObject::connect( createClientSaveCommand, &Command::executed,
@@ -37,11 +40,17 @@ public:
         QObject::connect(editClientSaveCommand, &Command::executed,
                          commandController, &CommandController::onEditClientSaveExecuted);
         editClientViewContextCommands.append(editClientSaveCommand);
+
+        Command* editClientDeleteCommand = new Command( commandController, QChar(0xf235), "Delete");
+        QObject::connect(editClientDeleteCommand, &Command::executed,
+                         commandController, &CommandController::onEditClientDeleteExecuted);
+        editClientViewContextCommands.append(editClientDeleteCommand);
     }
     //create instances of controllers
     CommandController* commandController{nullptr};
 
     IDatabaseController* databaseController{nullptr};
+    NavigationController* navigationController{nullptr};
     Client* newClient{nullptr};
     Client* selectedClient{nullptr};
     ClientSearch* clientSearch{nullptr};
@@ -52,11 +61,12 @@ public:
 
 CommandController::CommandController(QObject* parent,
                                      IDatabaseController* databaseController,
+                                     NavigationController* navigationController,
                                      Client* newClient,
                                      ClientSearch* clientSearch)
     : QObject(parent)
 {
-    implementation.reset(new Implementation(this, databaseController, newClient, clientSearch));
+    implementation.reset(new Implementation(this, databaseController, navigationController, newClient, clientSearch));
 }
 
 CommandController::~CommandController()
@@ -85,6 +95,10 @@ void CommandController::onCreateClientSaveExecuted()
                                                   implementation->newClient->id(),
                                                   implementation->newClient->toJson());
     qDebug() << "New client saved.";
+
+    implementation->clientSearch->searchText()->setValue(implementation->newClient->id());
+    implementation->clientSearch->search();
+    implementation->navigationController->goFindClientView();
 }
 
 void CommandController::onFindClientSearchExecuted()
@@ -103,6 +117,21 @@ void CommandController::onEditClientSaveExecuted()
                                                   implementation->selectedClient->toJson());
 
     qDebug() << "Updated client saved!";
+}
+
+void CommandController::onEditClientDeleteExecuted()
+{
+    qDebug() << "You executed the Delete command!";
+
+    implementation->databaseController->deleteRow(implementation->selectedClient->key(),
+                                                  implementation->selectedClient->id());
+    implementation->selectedClient = nullptr;
+
+    qDebug() << "Client Deleted.";
+
+    implementation->clientSearch->search();
+
+    implementation->navigationController->goDashboardView();
 }
 
 void CommandController::setSelectedClient(Client *client)

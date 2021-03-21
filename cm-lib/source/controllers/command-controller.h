@@ -29,6 +29,7 @@ class CMLIBSHARED_EXPORT CommandController : public QObject
 public:
     explicit CommandController(QObject* _parent = nullptr,
                                IDatabaseController* databaseController = nullptr,
+                               NavigationController* navigationController = nullptr,
                                models::Client* newClient = nullptr,
                                models::ClientSearch* clientSearch = nullptr);
 
@@ -41,6 +42,7 @@ public slots:
     void onCreateClientSaveExecuted();
     void onFindClientSearchExecuted();
     void onEditClientSaveExecuted();
+    void onEditClientDeleteExecuted();
     void setSelectedClient(cm::models::Client* client);
 
 private:
