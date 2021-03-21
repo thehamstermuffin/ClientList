@@ -41,6 +41,7 @@ public slots:
     void onCreateClientSaveExecuted();
     void onFindClientSearchExecuted();
     void onEditClientSaveExecuted();
+    void onEditClientDeleteExecuted();
     void setSelectedClient(cm::models::Client* client);
 
 private:

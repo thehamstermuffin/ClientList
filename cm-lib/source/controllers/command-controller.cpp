@@ -37,6 +37,11 @@ public:
         QObject::connect(editClientSaveCommand, &Command::executed,
                          commandController, &CommandController::onEditClientSaveExecuted);
         editClientViewContextCommands.append(editClientSaveCommand);
+
+        Command* editClientDeleteCommand = new Command( commandController, QChar(0xf235), "Delete");
+        QObject::connect(editClientDeleteCommand, &Command::executed,
+                         commandController, &CommandController::onEditClientDeleteExecuted);
+        editClientViewContextCommands.append(editClientDeleteCommand);
     }
     //create instances of controllers
     CommandController* commandController{nullptr};
@@ -103,6 +108,21 @@ void CommandController::onEditClientSaveExecuted()
                                                   implementation->selectedClient->toJson());
 
     qDebug() << "Updated client saved!";
+}
+
+void CommandController::onEditClientDeleteExecuted()
+{
+    qDebug() << "You executed the Delete command!";
+
+    implementation->databaseController->deleteRow(implementation->selectedClient->key(),
+                                                  implementation->selectedClient->id());
+    implementation->selectedClient = nullptr;
+
+    qDebug() << "Client Deleted.";
+
+    implementation->clientSearch->search();
+
+//    implementation->navigationController->goDashboardView();
 }
 
 void CommandController::setSelectedClient(Client *client)
