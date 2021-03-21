@@ -95,6 +95,10 @@ void CommandController::onCreateClientSaveExecuted()
                                                   implementation->newClient->id(),
                                                   implementation->newClient->toJson());
     qDebug() << "New client saved.";
+
+    implementation->clientSearch->searchText()->setValue(implementation->newClient->id());
+    implementation->clientSearch->search();
+    implementation->navigationController->goFindClientView();
 }
 
 void CommandController::onFindClientSearchExecuted()
