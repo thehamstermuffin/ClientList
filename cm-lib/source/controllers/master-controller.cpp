@@ -54,6 +54,11 @@ const QString& MasterController::welcomeMessage() const
     return implementation->welcomeMessage;
 }
 
+void MasterController::selectClient(Client *client)
+{
+    implementation->navigationController->goEditClientView(client);
+}
+
 Client* MasterController::newClient()
 {
     return implementation->newClient;

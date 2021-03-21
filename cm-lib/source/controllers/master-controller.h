@@ -37,6 +37,9 @@ public:
     models::ClientSearch* clientSearch();
     const QString& welcomeMessage() const;
 
+public slots:
+    void selectClient(cm::models::Client* client);
+
 private:
     class Implementation;
     QScopedPointer<Implementation> implementation;
