@@ -51,6 +51,12 @@ QQmlListProperty<Client> ClientSearch::ui_searchResults()
 void ClientSearch::search()
 {
     qDebug() << "Searching for " << implementation->searchText->value() << "...";
+
+    auto resultsArray = implementation->databaseController->find(
+                "client", implementation->searchText->value());
+    implementation->searchResults->update(resultsArray);
+
+    qDebug() << "Found" << implementation->searchResults->baseEntities().size() << " matches";
 }
 
 }}
