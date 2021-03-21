@@ -24,6 +24,23 @@ Item {
                 anchors.right: parent.right
             }
         }
+
+        ListView {
+            id: itemsView
+            anchors.top: searchPanel.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.margins: Style.sizeScreenMargin
+            clip: true
+            model: clientSearch.ui_searchResults
+            delegate:
+                Text {
+                text: modelData.ui_reference.ui_label + ": " + modelData.ui_reference.ui_value
+                font.pixelSize: Style.pixelSizeDataControls
+                color:  Style.colourPanelFont
+            }
+        }
     }
 
     CommandBar {
