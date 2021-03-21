@@ -34,11 +34,8 @@ Item {
             anchors.margins: Style.sizeScreenMargin
             clip: true
             model: clientSearch.ui_searchResults
-            delegate:
-                Text {
-                text: modelData.ui_reference.ui_label + ": " + modelData.ui_reference.ui_value
-                font.pixelSize: Style.pixelSizeDataControls
-                color:  Style.colourPanelFont
+            delegate: SearchResultDelegate {
+                client: modelData
             }
         }
     }
