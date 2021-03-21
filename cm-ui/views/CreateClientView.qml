@@ -7,40 +7,40 @@ import CM 1.0
 Item {
     property Client newClient: masterController.ui_newClient
 
-    Rectangle {
-        anchors.fill: parent
-        color: Style.colorBackground
+    Column {
+        spacing: Style.sizeScreenMargin
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.margins: Style.sizeScreenMargin
 
-        ScrollView {
-            id: scrollView
-            anchors {
-                left: parent.left
-                right: parent.right
-                top: parent.top
-                bottom: parent.bottom
-                margins: Style.sizeScreenMargin
-            }
-            clip: true
-
-            Column {
-                spacing: Style.sizeScreenMargin
-                width: scrollView.width
-                StringEditorSingleLine {
-                    stringDecorator: newClient.ui_name
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                    }
-                }
-
+        Panel {
+            headerText: "Client Details"
+            contentComponent:
+                Column {
+                spacing: Style.sizeControlSpacing
                 StringEditorSingleLine {
                     stringDecorator: newClient.ui_reference
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                    }
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                }
+
+                StringEditorSingleLine {
+                    stringDecorator: newClient.ui_name
+                    anchors.left: parent.left
+                    anchors.right: parent.right
                 }
             }
+        }
+
+        AddressEditor {
+            address: newClient.ui_supplyAddress
+            headerText: "Supply Address"
+        }
+
+        AddressEditor {
+            address: newClient.ui_billingAddress
+            headerText: "Billing Address"
         }
     }
 

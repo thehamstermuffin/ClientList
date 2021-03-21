@@ -9,8 +9,11 @@ DEFINES += CMLIB_LIBRARY
 
 INCLUDEPATH += source
 
+QT += sql
+
 SOURCES += source/models/client.cpp \
     source/controllers/command-controller.cpp \
+    source/controllers/database-controller.cpp \
     source/controllers/master-controller.cpp \
     source/data/data-decorator.cpp \
     source/data/datetime-decorator.cpp \
@@ -21,10 +24,13 @@ SOURCES += source/models/client.cpp \
     source/framework/command.cpp \
     source/models/address.cpp \
     source/models/appointment.cpp \
+    source/models/client-search.cpp \
     source/models/contact.cpp
 
 HEADERS += \
         source/controllers/command-controller.h \
+        source/controllers/database-controller.h \
+        source/controllers/i-database-controller.h \
         source/controllers/master-controller.h \
         source/controllers/navigation-controller.h \
         source/data/data-decorator.h \
@@ -37,6 +43,7 @@ HEADERS += \
         source/framework/command.h \
         source/models/address.h \
         source/models/appointment.h \
+        source/models/client-search.h \
         source/models/client.h \
         source/cm-lib_global.h \
         source/models/contact.h

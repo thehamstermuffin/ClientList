@@ -6,5 +6,8 @@
         <file alias="NavigationButton.qml">components/NavigationButton.qml</file>
         <file alias="NavigationBar.qml">components/NavigationBar.qml</file>
         <file alias="StringEditorSingleLine.qml">components/StringEditorSingleLine.qml</file>
+        <file alias="Panel.qml">components/Panel.qml</file>
+        <file alias="AddressEditor.qml">components/AddressEditor.qml</file>
+        <file alias="SearchResultDelegate.qml">components/SearchResultDelegate.qml</file>
     </qresource>
 </RCC>

@@ -46,4 +46,16 @@ Item {
     readonly property int pixelSizeDataControls: 18
     readonly property real widthDataControls: 400
     readonly property real heightDataControls: 40
+
+    readonly property real sizeControlSpacing: 10
+
+    readonly property color colourPanelBackground: "#FFFFFF"
+    readonly property color colourPanelBackgroundHover: "#ececec"
+    readonly property color colourPanelHeaderBackground: "#131313"
+    readonly property color colourPanelHeaderFont: "#ffffff"
+    readonly property color colourPanelFont: "#131313"
+    readonly property int pixelSizePanelHeader: 18
+    readonly property real heightPanelHeader: 40
+    readonly property real sizeShadowOffset: 5
+    readonly property color colourShadow: "#dedede"
 }
