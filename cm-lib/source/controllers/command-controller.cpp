@@ -14,14 +14,17 @@ class CommandController::Implementation
 public:
     Implementation(CommandController* _commandController,
                    IDatabaseController* _databaseController,
+                   NavigationController* _navigationController,
                    Client* _newClient,
                    ClientSearch* _clientSearch)
         : commandController(_commandController)
+        , navigationController(_navigationController)
         , databaseController(_databaseController)
         , newClient(_newClient)
         , clientSearch(_clientSearch)
     {
         IDatabaseController* databaseController{nullptr};
+        NavigationController* navigationController{nullptr};
         Client* newClient{nullptr};
         Command* createClientSaveCommand = new Command( commandController, QChar( 0xf0c7 ), "Save" );
         QObject::connect( createClientSaveCommand, &Command::executed,
@@ -47,6 +50,7 @@ public:
     CommandController* commandController{nullptr};
 
     IDatabaseController* databaseController{nullptr};
+    NavigationController* navigationController{nullptr};
     Client* newClient{nullptr};
     Client* selectedClient{nullptr};
     ClientSearch* clientSearch{nullptr};
@@ -57,11 +61,12 @@ public:
 
 CommandController::CommandController(QObject* parent,
                                      IDatabaseController* databaseController,
+                                     NavigationController* navigationController,
                                      Client* newClient,
                                      ClientSearch* clientSearch)
     : QObject(parent)
 {
-    implementation.reset(new Implementation(this, databaseController, newClient, clientSearch));
+    implementation.reset(new Implementation(this, databaseController, navigationController, newClient, clientSearch));
 }
 
 CommandController::~CommandController()
@@ -122,7 +127,7 @@ void CommandController::onEditClientDeleteExecuted()
 
     implementation->clientSearch->search();
 
-//    implementation->navigationController->goDashboardView();
+    implementation->navigationController->goDashboardView();
 }
 
 void CommandController::setSelectedClient(Client *client)
