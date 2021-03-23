@@ -26,7 +26,8 @@ SOURCES += source/models/client.cpp \
     source/models/appointment.cpp \
     source/models/client-search.cpp \
     source/models/contact.cpp \
-    source/networking/network-access-manager.cpp
+    source/networking/network-access-manager.cpp \
+    source/networking/web-request.cpp
 
 HEADERS += \
         source/controllers/command-controller.h \
@@ -49,7 +50,9 @@ HEADERS += \
         source/cm-lib_global.h \
         source/models/contact.h \
         source/networking/i-network-access-manager.h \
-        source/networking/network-access-manager.h
+        source/networking/i-web-request.h \
+        source/networking/network-access-manager.h \
+        source/networking/web-request.h
 
 include(../qmake-target-platform.pri)
 include(../qmake-destination-path.pri)

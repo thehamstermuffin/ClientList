@@ -17,6 +17,7 @@ Window {
         onGoEditClientView: contentFrame.replace("qrc:/views/EditClientView.qml",
                                                  {selectedClient: client})
         onGoFindClientView: contentFrame.replace("qrc:/views/FindClientView.qml")
+        onGoRssView: contentFrame.replace("qrc:/views/RssView.qml")
     }
 
     NavigationBar {
