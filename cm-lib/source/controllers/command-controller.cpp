@@ -18,8 +18,8 @@ public:
                    Client* _newClient,
                    ClientSearch* _clientSearch)
         : commandController(_commandController)
-        , navigationController(_navigationController)
         , databaseController(_databaseController)
+        , navigationController(_navigationController)
         , newClient(_newClient)
         , clientSearch(_clientSearch)
     {
@@ -45,6 +45,11 @@ public:
         QObject::connect(editClientDeleteCommand, &Command::executed,
                          commandController, &CommandController::onEditClientDeleteExecuted);
         editClientViewContextCommands.append(editClientDeleteCommand);
+
+        Command* rssRefreshCommand = new Command( commandController, QChar(0xf021), "Refresh");
+        QObject::connect(rssRefreshCommand, &Command::executed,
+                         commandController, &CommandController::onRssRefreshExecuted);
+        rssViewContextCommands.append(rssRefreshCommand);
     }
     //create instances of controllers
     CommandController* commandController{nullptr};
@@ -57,6 +62,7 @@ public:
     QList<Command*> createClientViewContextCommands{};
     QList<Command*> findClientViewContextCommands{};
     QList<Command*> editClientViewContextCommands{};
+    QList<Command*> rssViewContextCommands{};
 };
 
 CommandController::CommandController(QObject* parent,
@@ -86,6 +92,11 @@ QQmlListProperty<Command> CommandController::ui_findClientViewContextCommands()
 QQmlListProperty<Command> CommandController::ui_editClientViewContextCommands()
 {
     return QQmlListProperty<Command>(this, implementation->editClientViewContextCommands);
+}
+
+QQmlListProperty<Command> CommandController::ui_rssViewContextCommands()
+{
+    return QQmlListProperty<Command>(this, implementation->rssViewContextCommands);
 }
 void CommandController::onCreateClientSaveExecuted()
 {
@@ -137,6 +148,11 @@ void CommandController::onEditClientDeleteExecuted()
 void CommandController::setSelectedClient(Client *client)
 {
     implementation->selectedClient = client;
+}
+
+void CommandController::onRssRefreshExecuted()
+{
+    qDebug() << "Refreshing RSS";
 }
 
 }}

@@ -25,6 +25,9 @@ class CMLIBSHARED_EXPORT CommandController : public QObject
     Q_PROPERTY(QQmlListProperty<cm::framework::Command>
                ui_editClientViewContextCommands READ
                ui_editClientViewContextCommands CONSTANT)
+    Q_PROPERTY(QQmlListProperty<cm::framework::Command>
+               ui_rssViewContextCommands READ
+               ui_rssViewContextCommands CONSTANT)
 
 public:
     explicit CommandController(QObject* _parent = nullptr,
@@ -35,15 +38,18 @@ public:
 
     ~CommandController();
 
+    //accessor methods
     QQmlListProperty<framework::Command> ui_createClientViewContextCommands();
     QQmlListProperty<framework::Command> ui_findClientViewContextCommands();
     QQmlListProperty<framework::Command> ui_editClientViewContextCommands();
+    QQmlListProperty<framework::Command> ui_rssViewContextCommands();
 public slots:
     void onCreateClientSaveExecuted();
     void onFindClientSearchExecuted();
     void onEditClientSaveExecuted();
     void onEditClientDeleteExecuted();
     void setSelectedClient(cm::models::Client* client);
+    void onRssRefreshExecuted();
 
 private:
     class Implementation;
