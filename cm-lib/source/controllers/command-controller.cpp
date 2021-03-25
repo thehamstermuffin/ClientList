@@ -4,6 +4,7 @@
 #include <QDebug>
 
 using namespace cm::framework;
+using namespace cm::networking;
 using namespace cm::models;
 
 namespace cm {
@@ -59,6 +60,7 @@ public:
     Client* newClient{nullptr};
     Client* selectedClient{nullptr};
     ClientSearch* clientSearch{nullptr};
+    IWebRequest* rssWebRequest{nullptr};
     QList<Command*> createClientViewContextCommands{};
     QList<Command*> findClientViewContextCommands{};
     QList<Command*> editClientViewContextCommands{};
@@ -69,7 +71,8 @@ CommandController::CommandController(QObject* parent,
                                      IDatabaseController* databaseController,
                                      NavigationController* navigationController,
                                      Client* newClient,
-                                     ClientSearch* clientSearch)
+                                     ClientSearch* clientSearch,
+                                     IWebRequest* rssWebRequest)
     : QObject(parent)
 {
     implementation.reset(new Implementation(this, databaseController, navigationController, newClient, clientSearch));
@@ -153,6 +156,8 @@ void CommandController::setSelectedClient(Client *client)
 void CommandController::onRssRefreshExecuted()
 {
     qDebug() << "Refreshing RSS";
+
+    implementation->rssWebRequest->execute();
 }
 
 }}

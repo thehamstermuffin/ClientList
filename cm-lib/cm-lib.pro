@@ -1,4 +1,5 @@
-QT       -= gui #not needed since its a library project
+QT += sql network
+QT -= gui #not needed since its a library project
 
 TARGET = cm-lib #name for the binary output
 TEMPLATE = lib
@@ -9,7 +10,8 @@ DEFINES += CMLIB_LIBRARY
 
 INCLUDEPATH += source
 
-QT += sql network
+include(../qmake-target-platform.pri)
+include(../qmake-destination-path.pri)
 
 SOURCES += source/models/client.cpp \
     source/controllers/command-controller.cpp \
@@ -53,9 +55,6 @@ HEADERS += \
         source/networking/i-web-request.h \
         source/networking/network-access-manager.h \
         source/networking/web-request.h
-
-include(../qmake-target-platform.pri)
-include(../qmake-destination-path.pri)
 
 message(cm-lib project dir: $${PWD})
 

@@ -9,6 +9,7 @@
 #include <controllers/navigation-controller.h>
 #include <models/client.h>
 #include <models/client-search.h>
+#include <networking/i-web-request.h>
 
 namespace cm {
 namespace controllers {
@@ -34,7 +35,8 @@ public:
                                IDatabaseController* databaseController = nullptr,
                                NavigationController* navigationController = nullptr,
                                models::Client* newClient = nullptr,
-                               models::ClientSearch* clientSearch = nullptr);
+                               models::ClientSearch* clientSearch = nullptr,
+                               networking::IWebRequest* rssWebRequest = nullptr);
 
     ~CommandController();
 
