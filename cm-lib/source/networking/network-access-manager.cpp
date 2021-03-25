@@ -23,7 +23,7 @@ NetworkAccessManager::~NetworkAccessManager()
 {
 }
 
-QNetworkReply *NetworkAccessManager::get(const QNetworkRequest &request)
+QNetworkReply* NetworkAccessManager::get(const QNetworkRequest& request)
 {
     return implementation->networkAccessManager.get(request);
 }

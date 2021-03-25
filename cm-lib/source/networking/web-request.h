@@ -32,8 +32,8 @@ signals:
     void urlChanged();
 
 private slots:
-    void replyDelegate();
-    void sslErrorsDelegate(const QList<QSslError>& errors);
+	void replyDelegate();
+	void sslErrorsDelegate( const QList<QSslError>& _errors );
 
 private:
     class Implementation;

@@ -17,12 +17,14 @@ public:
                    IDatabaseController* _databaseController,
                    NavigationController* _navigationController,
                    Client* _newClient,
-                   ClientSearch* _clientSearch)
+                   ClientSearch* _clientSearch,
+                   IWebRequest* _rssWebRequest)
         : commandController(_commandController)
         , databaseController(_databaseController)
         , navigationController(_navigationController)
         , newClient(_newClient)
         , clientSearch(_clientSearch)
+		, rssWebRequest(_rssWebRequest)
     {
         IDatabaseController* databaseController{nullptr};
         NavigationController* navigationController{nullptr};
@@ -75,7 +77,7 @@ CommandController::CommandController(QObject* parent,
                                      IWebRequest* rssWebRequest)
     : QObject(parent)
 {
-    implementation.reset(new Implementation(this, databaseController, navigationController, newClient, clientSearch));
+    implementation.reset(new Implementation(this, databaseController, navigationController, newClient, clientSearch, rssWebRequest));
 }
 
 CommandController::~CommandController()
@@ -158,6 +160,8 @@ void CommandController::onRssRefreshExecuted()
     qDebug() << "Refreshing RSS";
 
     implementation->rssWebRequest->execute();
+
+    qDebug() << "Refreshed RSS";
 }
 
 }}

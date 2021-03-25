@@ -75,14 +75,12 @@ public:
 private:
     bool isBusy_{false};
 };
-
 }
 
-namespace networking { //structors
-
-WebRequest::WebRequest(QObject *parent, INetworkAccessManager *networkAccessManager, const QUrl &url)
-    : QObject(parent)
-    , IWebRequest()
+namespace networking {  // Structors
+WebRequest::WebRequest(QObject* parent, INetworkAccessManager* networkAccessManager, const QUrl& url)
+	: QObject(parent)
+	, IWebRequest()
 {
     implementation.reset(new WebRequest::Implementation(this, networkAccessManager, url));
 }
@@ -100,10 +98,10 @@ void WebRequest::execute()
         return;
     }
 
-    if (implementation->networkAccessManager->isNetworkAccessible()) {
-        emit error("Network not accessible");
-        return;
-    }
+    if(!implementation->networkAccessManager->isNetworkAccessible()) {
+		emit error("Network not accessible");
+		return;
+	}
 
     implementation->setIsBusy(true);
     QNetworkRequest request;
@@ -161,10 +159,10 @@ void WebRequest::replyDelegate()
     emit requestComplete(statusCode, responseBody);
 }
 
-void WebRequest::sslErrorsDelegate(const QList<QSslError> &errors)
+void WebRequest::sslErrorsDelegate(const QList<QSslError>& _errors)
 {
     QString sslError;
-    for (const auto& error : errors) {
+    for (const auto& error : _errors) {
         sslError += error.errorString() + "\n";
     }
     emit error(sslError);

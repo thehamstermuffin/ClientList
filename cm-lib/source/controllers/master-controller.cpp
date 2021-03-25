@@ -20,7 +20,7 @@ public:
         clientSearch = new ClientSearch(masterController, databaseController);
         networkAccessManager = new NetworkAccessManager(masterController);
         rssWebRequest = new WebRequest(masterController, networkAccessManager,
-                                       QUrl("http://feeds.bbci.co.uk/news/rss.xml?edition=uk"));
+                                       QUrl("https://write.as/thenewoil/feed/"));
         commandController = new CommandController(masterController, databaseController, navigationController, newClient, clientSearch, rssWebRequest);
 
         QObject::connect(rssWebRequest, &WebRequest::requestComplete, masterController, &MasterController::onRssReplyReceived);

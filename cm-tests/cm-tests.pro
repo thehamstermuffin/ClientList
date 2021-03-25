@@ -31,6 +31,9 @@ MOC_DIR = $$PWD/build/$$DESTINATION_PATH/.moc
 RCC_DIR = $$PWD/build/$$DESTINATION_PATH/.qrc
 UI_DIR = $$PWD/build/$$DESTINATION_PATH/.ui
 
+CONFIG += qt
+QT += network
+
 HEADERS += \
     source/data/datetime-decorator-tests.h \
     source/data/enumerator-decorator-tests.h \
