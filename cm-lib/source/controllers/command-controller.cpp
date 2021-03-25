@@ -160,8 +160,6 @@ void CommandController::onRssRefreshExecuted()
     qDebug() << "Refreshing RSS";
 
     implementation->rssWebRequest->execute();
-
-    qDebug() << "Refreshed RSS";
 }
 
 }}
