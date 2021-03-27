@@ -30,7 +30,10 @@ SOURCES += source/models/client.cpp \
     source/models/contact.cpp \
     source/networking/network-access-manager.cpp \
     source/networking/web-request.cpp \
-    source/utilities/xml-helper.cpp
+    source/utilities/xml-helper.cpp \
+    source/rss/rss-channel.cpp \
+    source/rss/rss-image.cpp \
+    source/rss/rss-item.cpp
 
 HEADERS += \
         source/controllers/command-controller.h \
@@ -56,7 +59,10 @@ HEADERS += \
         source/networking/i-web-request.h \
         source/networking/network-access-manager.h \
         source/networking/web-request.h \
-        source/utilities/xml-helper.h
+        source/utilities/xml-helper.h \
+        source/rss/rss-channel.h \
+        source/rss/rss-image.h \
+        source/rss/rss-item.h
 
 message(cm-lib project dir: $${PWD})
 
