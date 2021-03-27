@@ -1,4 +1,4 @@
-QT += sql network
+QT += sql network xml
 QT -= gui #not needed since its a library project
 
 TARGET = cm-lib #name for the binary output
@@ -29,7 +29,8 @@ SOURCES += source/models/client.cpp \
     source/models/client-search.cpp \
     source/models/contact.cpp \
     source/networking/network-access-manager.cpp \
-    source/networking/web-request.cpp
+    source/networking/web-request.cpp \
+    source/utilities/xml-helper.cpp
 
 HEADERS += \
         source/controllers/command-controller.h \
@@ -54,7 +55,8 @@ HEADERS += \
         source/networking/i-network-access-manager.h \
         source/networking/i-web-request.h \
         source/networking/network-access-manager.h \
-        source/networking/web-request.h
+        source/networking/web-request.h \
+        source/utilities/xml-helper.h
 
 message(cm-lib project dir: $${PWD})
 
