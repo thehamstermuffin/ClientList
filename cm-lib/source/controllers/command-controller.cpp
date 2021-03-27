@@ -4,6 +4,7 @@
 #include <QDebug>
 
 using namespace cm::framework;
+using namespace cm::networking;
 using namespace cm::models;
 
 namespace cm {
@@ -16,12 +17,14 @@ public:
                    IDatabaseController* _databaseController,
                    NavigationController* _navigationController,
                    Client* _newClient,
-                   ClientSearch* _clientSearch)
+                   ClientSearch* _clientSearch,
+                   IWebRequest* _rssWebRequest)
         : commandController(_commandController)
-        , navigationController(_navigationController)
         , databaseController(_databaseController)
+        , navigationController(_navigationController)
         , newClient(_newClient)
         , clientSearch(_clientSearch)
+		, rssWebRequest(_rssWebRequest)
     {
         IDatabaseController* databaseController{nullptr};
         NavigationController* navigationController{nullptr};
@@ -45,6 +48,11 @@ public:
         QObject::connect(editClientDeleteCommand, &Command::executed,
                          commandController, &CommandController::onEditClientDeleteExecuted);
         editClientViewContextCommands.append(editClientDeleteCommand);
+
+        Command* rssRefreshCommand = new Command( commandController, QChar(0xf021), "Refresh");
+        QObject::connect(rssRefreshCommand, &Command::executed,
+                         commandController, &CommandController::onRssRefreshExecuted);
+        rssViewContextCommands.append(rssRefreshCommand);
     }
     //create instances of controllers
     CommandController* commandController{nullptr};
@@ -54,19 +62,22 @@ public:
     Client* newClient{nullptr};
     Client* selectedClient{nullptr};
     ClientSearch* clientSearch{nullptr};
+    IWebRequest* rssWebRequest{nullptr};
     QList<Command*> createClientViewContextCommands{};
     QList<Command*> findClientViewContextCommands{};
     QList<Command*> editClientViewContextCommands{};
+    QList<Command*> rssViewContextCommands{};
 };
 
 CommandController::CommandController(QObject* parent,
                                      IDatabaseController* databaseController,
                                      NavigationController* navigationController,
                                      Client* newClient,
-                                     ClientSearch* clientSearch)
+                                     ClientSearch* clientSearch,
+                                     IWebRequest* rssWebRequest)
     : QObject(parent)
 {
-    implementation.reset(new Implementation(this, databaseController, navigationController, newClient, clientSearch));
+    implementation.reset(new Implementation(this, databaseController, navigationController, newClient, clientSearch, rssWebRequest));
 }
 
 CommandController::~CommandController()
@@ -86,6 +97,11 @@ QQmlListProperty<Command> CommandController::ui_findClientViewContextCommands()
 QQmlListProperty<Command> CommandController::ui_editClientViewContextCommands()
 {
     return QQmlListProperty<Command>(this, implementation->editClientViewContextCommands);
+}
+
+QQmlListProperty<Command> CommandController::ui_rssViewContextCommands()
+{
+    return QQmlListProperty<Command>(this, implementation->rssViewContextCommands);
 }
 void CommandController::onCreateClientSaveExecuted()
 {
@@ -137,6 +153,13 @@ void CommandController::onEditClientDeleteExecuted()
 void CommandController::setSelectedClient(Client *client)
 {
     implementation->selectedClient = client;
+}
+
+void CommandController::onRssRefreshExecuted()
+{
+    qDebug() << "Refreshing RSS";
+
+    implementation->rssWebRequest->execute();
 }
 
 }}

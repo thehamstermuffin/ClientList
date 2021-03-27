@@ -9,6 +9,8 @@
 #include <controllers/navigation-controller.h>
 #include <controllers/command-controller.h>
 #include <controllers/database-controller.h>
+#include <networking/network-access-manager.h>
+#include <networking/web-request.h>
 
 #include <models/client.h>
 
@@ -39,6 +41,7 @@ public:
 
 public slots:
     void selectClient(cm::models::Client* client);
+    void onRssReplyReceived(int statusCode, QByteArray body);
 
 private:
     class Implementation;

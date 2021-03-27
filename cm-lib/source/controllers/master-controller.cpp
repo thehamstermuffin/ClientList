@@ -1,6 +1,10 @@
 #include "master-controller.h"
 
+#include <networking/network-access-manager.h>
+#include <networking/web-request.h>
+
 using namespace cm::models;
+using namespace cm::networking;
 
 namespace cm {
 namespace controllers {
@@ -14,7 +18,12 @@ public:
         navigationController = new NavigationController(masterController);
         newClient = new Client(masterController);
         clientSearch = new ClientSearch(masterController, databaseController);
-        commandController = new CommandController(masterController, databaseController, navigationController, newClient, clientSearch);
+        networkAccessManager = new NetworkAccessManager(masterController);
+        rssWebRequest = new WebRequest(masterController, networkAccessManager,
+                                       QUrl("https://write.as/thenewoil/feed/"));
+        commandController = new CommandController(masterController, databaseController, navigationController, newClient, clientSearch, rssWebRequest);
+
+        QObject::connect(rssWebRequest, &WebRequest::requestComplete, masterController, &MasterController::onRssReplyReceived);
     }
     DatabaseController* databaseController{nullptr};
     MasterController* masterController{nullptr};
@@ -22,7 +31,10 @@ public:
     NavigationController* navigationController{nullptr};
     Client* newClient{nullptr};
     ClientSearch* clientSearch{nullptr};
+    NetworkAccessManager* networkAccessManager{nullptr};
+    WebRequest* rssWebRequest{nullptr};
     QString welcomeMessage = "Welcome to the Client Management system!";
+
 };
 
 MasterController::MasterController(QObject* parent) : QObject(parent)
@@ -57,6 +69,12 @@ const QString& MasterController::welcomeMessage() const
 void MasterController::selectClient(Client *client)
 {
     implementation->navigationController->goEditClientView(client);
+}
+
+void MasterController::onRssReplyReceived(int statusCode, QByteArray body)
+{
+    qDebug() << "Received RSS request response code " << statusCode << ":";
+    qDebug() << body;
 }
 
 Client* MasterController::newClient()
