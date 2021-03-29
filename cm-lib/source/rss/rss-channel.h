@@ -8,6 +8,7 @@
 #include <QObject>
 #include <QtQml/QQmlListProperty>
 #include <QString>
+
 #include <cm-lib_global.h>
 #include <rss/rss-image.h>
 #include <rss/rss-item.h>

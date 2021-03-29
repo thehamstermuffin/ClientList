@@ -2,7 +2,7 @@
 #define MASTERCONTROLLER_H
 
 #include <QObject>
-#include<QScopedPointer>
+#include <QScopedPointer>
 #include <QString>
 
 #include <cm-lib_global.h>
@@ -30,7 +30,7 @@ class CMLIBSHARED_EXPORT MasterController : public QObject
                 READ databaseController CONSTANT )
     Q_PROPERTY( cm::models::Client* ui_newClient READ newClient CONSTANT)
     Q_PROPERTY( cm::models::ClientSearch* ui_clientSearch READ clientSearch CONSTANT)
-    Q_PROPERTY(type ui_rssChannel READ rssChannel NOTIFY rssChannelChanged)
+    Q_PROPERTY( cm::rss::RssChannel ui_rssChannel READ rssChannel NOTIFY rssChannelChanged)
 public:
     explicit MasterController(QObject *parent = nullptr);
     ~MasterController();
@@ -45,7 +45,6 @@ public:
 public slots:
     void selectClient(cm::models::Client* client);
     void onRssReplyReceived(int statusCode, QByteArray body);
-
 
 signals:
     void rssChannelChanged();
