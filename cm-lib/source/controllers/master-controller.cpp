@@ -5,6 +5,7 @@
 
 using namespace cm::models;
 using namespace cm::networking;
+using namespace cm::rss;
 
 namespace cm {
 namespace controllers {
@@ -33,6 +34,7 @@ public:
     ClientSearch* clientSearch{nullptr};
     NetworkAccessManager* networkAccessManager{nullptr};
     WebRequest* rssWebRequest{nullptr};
+    RssChannel* rssChannel{nullptr};
     QString welcomeMessage = "Welcome to the Client Management system!";
 
 };
@@ -75,6 +77,15 @@ void MasterController::onRssReplyReceived(int statusCode, QByteArray body)
 {
     qDebug() << "Received RSS request response code " << statusCode << ":";
     qDebug() << body;
+
+    if (implementation->rssChannel) {
+        implementation->rssChannel->deleteLater();// Always use deleteLater with QObject derived classes
+        implementation->rssChannel = nullptr;
+        emit rssChannelChanged();
+    }
+
+    implementation->rssChannel = RssChannel::fromXml(body, this);
+    emit rssChannelChanged();
 }
 
 Client* MasterController::newClient()
@@ -85,6 +96,11 @@ Client* MasterController::newClient()
 ClientSearch *MasterController::clientSearch()
 {
     return implementation->clientSearch;
+}
+
+RssChannel *MasterController::rssChannel()
+{
+    return implementation->rssChannel;
 }
 
 }}

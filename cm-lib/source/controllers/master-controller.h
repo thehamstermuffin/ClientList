@@ -11,6 +11,7 @@
 #include <controllers/database-controller.h>
 #include <networking/network-access-manager.h>
 #include <networking/web-request.h>
+#include <rss/rss-channel.h>
 
 #include <models/client.h>
 
@@ -29,6 +30,7 @@ class CMLIBSHARED_EXPORT MasterController : public QObject
                 READ databaseController CONSTANT )
     Q_PROPERTY( cm::models::Client* ui_newClient READ newClient CONSTANT)
     Q_PROPERTY( cm::models::ClientSearch* ui_clientSearch READ clientSearch CONSTANT)
+    Q_PROPERTY(type ui_rssChannel READ rssChannel NOTIFY rssChannelChanged)
 public:
     explicit MasterController(QObject *parent = nullptr);
     ~MasterController();
@@ -37,11 +39,16 @@ public:
     DatabaseController* databaseController();
     models::Client* newClient();
     models::ClientSearch* clientSearch();
+    rss::RssChannel* rssChannel();
     const QString& welcomeMessage() const;
 
 public slots:
     void selectClient(cm::models::Client* client);
     void onRssReplyReceived(int statusCode, QByteArray body);
+
+
+signals:
+    void rssChannelChanged();
 
 private:
     class Implementation;
