@@ -9,5 +9,6 @@
         <file alias="Panel.qml">components/Panel.qml</file>
         <file alias="AddressEditor.qml">components/AddressEditor.qml</file>
         <file alias="SearchResultDelegate.qml">components/SearchResultDelegate.qml</file>
+        <file alias="RssItemDelegate.qml">components/RssItemDelegate.qml</file>
     </qresource>
 </RCC>

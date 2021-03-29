@@ -7,9 +7,18 @@ Item {
         anchors.fill: parent
         color: Style.colorBackground
 
-        Text {
-            anchors.centerIn: parent
-            text: "Rss View"
+        ListView {
+            id: itemsView
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: commandBar.top
+            anchors.margins: Style.sizeScreenMargin
+            clip: true
+            model: masterController.ui_rssChannel ? masterController.ui_rssChannel.ui_items : 0
+            delegate: RssItemDelegate {
+                rssItem: modelData
+            }
         }
     }
 

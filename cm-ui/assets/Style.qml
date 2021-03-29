@@ -58,4 +58,11 @@ Item {
     readonly property real heightPanelHeader: 40
     readonly property real sizeShadowOffset: 5
     readonly property color colourShadow: "#dedede"
+
+    readonly property color colourItemBackground: "#fefefe"
+    readonly property color colourItemBackgroundHover: "#efefef"
+    readonly property color colourItemBorder: "#efefef"
+    readonly property color colourItemDateFont: "#636363"
+    readonly property color colourItemTitleFont: "#131313"
+    readonly property real sizeItemMargin: 5
 }
