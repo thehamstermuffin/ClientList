@@ -65,7 +65,7 @@ const QString &RssItem::link() const
     return implementation->link;
 }
 
-const QDateTime RssItem::pubDate() const
+const QDateTime &RssItem::pubDate() const
 {
     return implementation->pubDate;
 }

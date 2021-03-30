@@ -98,7 +98,7 @@ RssChannel *RssChannel::fromXml(const QByteArray &xmlData, QObject *parent)
     auto channelNodes = doc.elementsByTagName("channel");
     //Rss must have 1 channel
     if (channelNodes.size() != 1) return nullptr;
-    RssChannel* channel = new RssChannel(parent(), channelNodes.at(0));
+    RssChannel* channel = new RssChannel(parent, channelNodes.at(0));
     auto imageNodes = doc.elementsByTagName("image");
     if (imageNodes.size() > 0) {
         channel->setImage(new RssImage(channel, imageNodes.at(0)));

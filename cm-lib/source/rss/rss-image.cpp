@@ -52,7 +52,8 @@ RssImage::~RssImage()
 {    
 }
 
-quint16 RssImage::height()
+quint16 RssImage::height() const
+{
     return implementation->height;
 }
 

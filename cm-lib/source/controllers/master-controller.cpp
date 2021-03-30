@@ -21,7 +21,7 @@ public:
         clientSearch = new ClientSearch(masterController, databaseController);
         networkAccessManager = new NetworkAccessManager(masterController);
         rssWebRequest = new WebRequest(masterController, networkAccessManager,
-                                       QUrl("https://write.as/thenewoil/feed/"));
+                                       QUrl("http://feeds.bbci.co.uk/news/rss.xml?edition=uk"));
         commandController = new CommandController(masterController, databaseController, navigationController, newClient, clientSearch, rssWebRequest);
 
         QObject::connect(rssWebRequest, &WebRequest::requestComplete, masterController, &MasterController::onRssReplyReceived);
@@ -93,12 +93,12 @@ Client* MasterController::newClient()
     return implementation->newClient;
 }
 
-ClientSearch *MasterController::clientSearch()
+ClientSearch* MasterController::clientSearch()
 {
     return implementation->clientSearch;
 }
 
-RssChannel *MasterController::rssChannel()
+RssChannel* MasterController::rssChannel()
 {
     return implementation->rssChannel;
 }

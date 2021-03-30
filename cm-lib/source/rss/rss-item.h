@@ -24,7 +24,7 @@ public:
 
     const QString& description() const;
     const QString& link() const;
-    const QDateTime pubDate() const;
+    const QDateTime& pubDate() const;
     const QString& title() const;
 
 private:

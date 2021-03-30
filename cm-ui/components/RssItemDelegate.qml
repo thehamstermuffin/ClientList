@@ -24,7 +24,7 @@ Item {
             font.pixelSize: Style.pixelSizeDataControls
             font.italic: true
             font.weight: Font.Light
-            color: Style.colorItemDateFont
+            color: Style.colourItemDateFont
         }
 
         Text {
@@ -35,7 +35,7 @@ Item {
             anchors.margins: Style.sizeItemMargin
             text: rssItem.ui_title
             font.pixelSize: Style.pixelSizeDataControls
-            color: Style.colorItemTitleFont
+            color: Style.colourItemTitleFont
             wrapMode: Text.Wrap
         }
 
@@ -46,7 +46,7 @@ Item {
             anchors.right: parent.right
             anchors.topMargin: Style.sizeItemMargin
             height: 1
-            color: Style.colorItemBorder
+            color: Style.colourItemBorder
         }
 
         MouseArea {
@@ -68,9 +68,6 @@ Item {
                     color: Style.colourPanelBackgroundHover
                 }
             }
-
         ]
-
-
     }
 }
