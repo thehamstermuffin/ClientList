@@ -6,7 +6,7 @@ namespace utilities {
 QString XmlHelper::toString(const QDomNode &domNode)
 {
     QString returnValue;
-    for(auto i = 0; i < domNode.childNodes().size(); i++) {
+    for(auto i = 0; i < domNode.childNodes().size(); ++i) {
         QDomNode subNode = domNode.childNodes().at(i);
         appendNode(subNode, returnValue);
     }
@@ -29,16 +29,16 @@ void XmlHelper::appendNode(const QDomNode &domNode, QString &output)
         return;
     }
 
-    if (domNode.nodeType() == QDomNode::AttributeNode) {
+    if (domNode.nodeType() == QDomNode::ElementNode) {
         output.append("<");
         output.append(domNode.nodeName());
         //Add attributes
-        for (auto i = 0; i < domNode.attributes().size(); i++) {
+        for (auto i = 0; i < domNode.attributes().size(); ++i) {
             QDomNode subNode = domNode.attributes().item(i);
             appendNode(subNode, output);
         }
         output.append(">");
-        for (auto i = 0; i< domNode.childNodes().size(); i++) {
+        for (auto i = 0; i< domNode.childNodes().size(); ++i) {
             QDomNode subNode = domNode.childNodes().at(i);
             appendNode(subNode, output);
         }
