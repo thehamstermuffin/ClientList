@@ -5,6 +5,7 @@
 
 using namespace cm::models;
 using namespace cm::networking;
+using namespace cm::rss;
 
 namespace cm {
 namespace controllers {
@@ -20,7 +21,7 @@ public:
         clientSearch = new ClientSearch(masterController, databaseController);
         networkAccessManager = new NetworkAccessManager(masterController);
         rssWebRequest = new WebRequest(masterController, networkAccessManager,
-                                       QUrl("https://write.as/thenewoil/feed/"));
+                                       QUrl("http://feeds.bbci.co.uk/news/rss.xml?edition=uk"));
         commandController = new CommandController(masterController, databaseController, navigationController, newClient, clientSearch, rssWebRequest);
 
         QObject::connect(rssWebRequest, &WebRequest::requestComplete, masterController, &MasterController::onRssReplyReceived);
@@ -33,6 +34,7 @@ public:
     ClientSearch* clientSearch{nullptr};
     NetworkAccessManager* networkAccessManager{nullptr};
     WebRequest* rssWebRequest{nullptr};
+    RssChannel* rssChannel{nullptr};
     QString welcomeMessage = "Welcome to the Client Management system!";
 
 };
@@ -75,6 +77,15 @@ void MasterController::onRssReplyReceived(int statusCode, QByteArray body)
 {
     qDebug() << "Received RSS request response code " << statusCode << ":";
     qDebug() << body;
+
+    if (implementation->rssChannel) {
+        implementation->rssChannel->deleteLater();// Always use deleteLater with QObject derived classes
+        implementation->rssChannel = nullptr;
+        emit rssChannelChanged();
+    }
+
+    implementation->rssChannel = RssChannel::fromXml(body, this);
+    emit rssChannelChanged();
 }
 
 Client* MasterController::newClient()
@@ -82,9 +93,14 @@ Client* MasterController::newClient()
     return implementation->newClient;
 }
 
-ClientSearch *MasterController::clientSearch()
+ClientSearch* MasterController::clientSearch()
 {
     return implementation->clientSearch;
+}
+
+RssChannel* MasterController::rssChannel()
+{
+    return implementation->rssChannel;
 }
 
 }}

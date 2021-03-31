@@ -1,4 +1,4 @@
-QT += quick qml
+QT += quick qml xml
 CONFIG += c++14
 TEMPLATE = app
 INCLUDEPATH  += source \

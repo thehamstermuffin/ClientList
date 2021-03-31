@@ -7,3 +7,4 @@ StringEditorSingleLine 1.0 StringEditorSingleLine.qml
 Panel 1.0 Panel.qml
 AddressEditor 1.0 AddressEditor.qml
 SearchResultDelegate 1.0 SearchResultDelegate.qml
+RssItemDelegate 1.0 RssItemDelegate.qml

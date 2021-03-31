@@ -16,6 +16,10 @@
 #include <data/int-decorator.h>
 #include <data/string-decorator.h>
 
+#include <rss/rss-channel.h>
+#include <rss/rss-image.h>
+#include <rss/rss-item.h>
+
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -37,6 +41,10 @@ int main(int argc, char *argv[])
     qmlRegisterType<cm::models::Client>("CM", 1, 0, "Client");
     qmlRegisterType<cm::models::Contact>("CM", 1, 0, "Contact");
     qmlRegisterType<cm::models::ClientSearch>("CM", 1, 0, "ClientSearch");
+
+    qmlRegisterType<cm::rss::RssChannel>("CM", 1, 0, "RssChannel");
+    qmlRegisterType<cm::rss::RssImage>("CM", 1, 0, "RssImage");
+    qmlRegisterType<cm::rss::RssItem>("CM", 1, 0, "RssItem");
 
     cm::controllers::MasterController masterController;
 
