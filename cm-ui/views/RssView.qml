@@ -1,4 +1,4 @@
-import QtQuick 2.12
+import QtQuick 2.0
 import assets 1.0
 import components 1.0
 
@@ -12,7 +12,9 @@ Item {
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.bottom: commandBar.top
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: commandBar.height
+            height:  300
             anchors.margins: Style.sizeScreenMargin
             clip: true
             model: masterController.ui_rssChannel ? masterController.ui_rssChannel.ui_items : 0
