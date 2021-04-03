@@ -45,5 +45,4 @@ signals:
 };
 
 }}
-
 #endif

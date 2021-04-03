@@ -8,7 +8,7 @@ Item {
 
     Rectangle {
         anchors.fill: parent
-        color: Style.colorBackground
+        color: Style.colourBackground
 
         Panel {
             id: searchPanel

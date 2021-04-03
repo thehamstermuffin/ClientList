@@ -35,6 +35,5 @@ private:
     QScopedPointer<Implementation> implementation;
 };
 
-}
-}
+}}
 #endif // DATADECORATOR_H

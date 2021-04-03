@@ -21,7 +21,6 @@ signals:
     void goFindClientView();
     void goRssView();
 };
-}
-}
 
+}}
 #endif // NAVIGATIONCONTROLLER_H
