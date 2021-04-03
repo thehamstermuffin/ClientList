@@ -28,7 +28,6 @@ Item {
 
     readonly property int pixelSizeNavigationBarText: 22
 
-
     readonly property color colourCommandBarBackground: "#cecece"
     readonly property color colourCommandBarFont: "#131313"
     readonly property color colourCommandBarFontDisabled: "#636363"
