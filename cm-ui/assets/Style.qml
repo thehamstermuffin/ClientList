@@ -2,7 +2,7 @@ pragma Singleton
 import QtQuick 2.12
 
 Item {
-    readonly property color colorBackground: "#efefef"
+    readonly property color colourBackground: "#efefef"
 
     property alias fontAwesome: fontAwesomeLoader.name
     FontLoader {
@@ -13,7 +13,6 @@ Item {
     readonly property color colourNavigationBarBackground: "#000000"
     readonly property color colourNavigationBarFont: "#ffffff"
     readonly property int pixelSizeNavigationBarIcon: 42
-
 
     readonly property real widthNavigationButtonIcon: 80
     readonly property real heightNavigationButtonIcon: widthNavigationButtonIcon
